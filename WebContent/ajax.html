@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <script type="text/javascript" src="js/lib/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="js/lib/main.js"></script>
+    <script src="libs/SuperMap.Include.js"></script>
+    
+    <script type="text/javascript" src="conf/config.js"></script>
+    
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/jbdw.js"></script>
+    <script type="text/javascript" src="js/theme.js"></script>
+    <script>
+    var xmlHttpRequest = null; //声明一个空的对象以接受XMLHttpRequest对象  
+    function ajaxRequest() {  
+        if(window.ActiveXObject) {              //IE的  
+            xmlHttpRequest = new ActionXObject("Microsoft.XMLHTTP");  
+        }  
+        else if(window.XMLHttpRequest) {        //除IE外的  
+            xmlHttpRequest = new XMLHttpRequest();  
+        }  
+        if(xmlHttpRequest != null) {  
+            xmlHttpRequest.open("GET", "TEST_Authenticate", true);  
+            //关联好ajax的回调函数  
+            xmlHttpRequest.onreadystatechange = ajaxCall;  
+              
+            //真正向服务器发送请求  
+            xmlHttpRequest.send();  
+        }  
+    }   
+    function ajaxCall() {  
+        if(xmlHttpRequest.readyState == 4 ) {       //完全得到服务器的响应  
+            if(xmlHttpRequest.status == 200) {      //没有异常  
+                var text = xmlHttpRequest.responseText;  
+                document.getElementById("div1").innerHTML = text;  
+            }  
+        }  
+    }  
+       </script>
+    </head>
+
+    <body onload="ajaxRequest()">
+    <input type="button" onclick="ajaxCall()" value="asfasdfsdfasf"/>
+<div id="div1"></div>
+
+
+    </body>
+    </html>
